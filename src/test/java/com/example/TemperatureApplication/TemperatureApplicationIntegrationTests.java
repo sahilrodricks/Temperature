@@ -14,9 +14,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
 
+/*
+		This file contains integration tests that verify the functionality of the API as implemented
+		in the TemperatureController.java. This file tests individual api calls as well as consecutive
+		api calls. (ex: POST followed by a DELETE).
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TemperatureApplicationTests {
+public class TemperatureApplicationIntegrationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
