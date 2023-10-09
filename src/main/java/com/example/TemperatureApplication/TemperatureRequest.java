@@ -1,9 +1,6 @@
 package com.example.TemperatureApplication;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
