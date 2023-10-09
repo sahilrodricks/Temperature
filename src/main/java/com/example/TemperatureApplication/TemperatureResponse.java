@@ -7,6 +7,12 @@ This class will represent the response payload returned for all API interactions
 @param data - int64 epochMs timestamp.
  */
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.List;
+
 public class TemperatureResponse {
   private boolean overtemp;
   private int deviceId;
