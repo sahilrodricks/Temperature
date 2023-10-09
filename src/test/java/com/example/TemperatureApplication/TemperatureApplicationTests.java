@@ -1,6 +1,5 @@
 package com.example.TemperatureApplication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -21,9 +20,6 @@ public class TemperatureApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
-
-	@Autowired
-	private ObjectMapper objectMapper;
 
 	@BeforeEach
 	public void setup() {
@@ -110,7 +106,6 @@ public class TemperatureApplicationTests {
 	 */
 	@Test
 	public void testFullErrorHandling() throws Exception {
-		// Add errors to the list
 		String error1 = "Error 1";
 		String error2 = "Error 2";
 
