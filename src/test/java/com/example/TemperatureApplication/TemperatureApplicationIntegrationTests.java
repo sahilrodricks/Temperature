@@ -86,6 +86,15 @@ public class TemperatureApplicationIntegrationTests {
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 			.andExpect(jsonPath("$.error").value("bad request"));
 
+		//test invalid 'Temperature' free form text
+		invalidData = "365951380::Temperature:58.48256793121914";
+		mockMvc.perform(MockMvcRequestBuilders.post("/temp")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"data\": \"" + invalidData + "\"}")
+			)
+			.andExpect(status().isBadRequest())
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+			.andExpect(jsonPath("$.error").value("bad request"));
 	}
 
 	@Test

@@ -24,7 +24,6 @@ public class TemperatureController {
 
   @PostMapping(value = "/temp", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> postData(@RequestBody JsonNode requestPayload) throws JsonProcessingException {
-    System.out.println("Received data: " + requestPayload);
 
     try {
       TemperatureRequest request = new TemperatureRequest(requestPayload);
@@ -42,7 +41,7 @@ public class TemperatureController {
         );
       } else {
         return ResponseEntity.ok(
-          new TemperatureResponse(false, deviceId, null)
+          new TemperatureDoesNotExceedThresholdResponse().getResponseMap()
         );
       }
 

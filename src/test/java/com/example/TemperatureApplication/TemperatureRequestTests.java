@@ -16,7 +16,7 @@ public class TemperatureRequestTests {
 
   @Before
   public void setUp() {
-    String json = "{\"data\":\"12345:1633742400000:Temperature:72.5\"}";
+    String json = "{\"data\":\"12345:1633742400000:'Temperature':72.5\"}";
     ObjectMapper objectMapper = new ObjectMapper();
     JsonNode jsonNode;
     try {
@@ -29,7 +29,7 @@ public class TemperatureRequestTests {
 
   @Test
   public void testGetData() {
-    assertEquals("12345:1633742400000:Temperature:72.5", temperatureRequest.getData());
+    assertEquals("12345:1633742400000:'Temperature':72.5", temperatureRequest.getData());
   }
 
   @Test
@@ -49,7 +49,7 @@ public class TemperatureRequestTests {
 
   @Test
   public void testGetDataString() {
-    String[] expectedDataString = {"12345", "1633742400000", "Temperature", "72.5"};
+    String[] expectedDataString = {"12345", "1633742400000", "'Temperature'", "72.5"};
     assertArrayEquals(expectedDataString, temperatureRequest.getDataString());
   }
 

@@ -32,6 +32,9 @@ public class TemperatureRequest {
 
     try {
       this.data = jsonNode.get("data").asText();
+      if (!data.contains("'Temperature'")) {
+        throw new IllegalArgumentException("Invalid 'data' field format");
+      }
       String[] parts = data.split(":");
       this.dataString = parts;
       this.deviceId = Integer.parseInt(parts[0]);

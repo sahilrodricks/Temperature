@@ -36,7 +36,7 @@ public class TemperatureControllerTests {
   public void testPostDataOverTemp() throws IOException {
     JsonNode requestPayload = mock(JsonNode.class);
     when(requestPayload.get("data")).thenReturn(mock(JsonNode.class));
-    when(requestPayload.get("data").asText()).thenReturn("12345:1633742400000:Temperature:92.5");
+    when(requestPayload.get("data").asText()).thenReturn("12345:1633742400000:'Temperature':92.5");
 
     TemperatureRequest temperatureRequest = new TemperatureRequest(requestPayload);
     when(objectMapper.readValue(requestPayload.toString(), TemperatureRequest.class)).thenReturn(temperatureRequest);
@@ -51,7 +51,7 @@ public class TemperatureControllerTests {
   public void testPostDataNotOverTemp() throws IOException {
     JsonNode requestPayload = mock(JsonNode.class);
     when(requestPayload.get("data")).thenReturn(mock(JsonNode.class));
-    when(requestPayload.get("data").asText()).thenReturn("12345:1633742400000:Temperature:72.5");
+    when(requestPayload.get("data").asText()).thenReturn("12345:1633742400000:'Temperature':72.5");
 
     TemperatureRequest temperatureRequest = new TemperatureRequest(requestPayload);
     when(objectMapper.readValue(requestPayload.toString(), TemperatureRequest.class)).thenReturn(temperatureRequest);
@@ -59,7 +59,8 @@ public class TemperatureControllerTests {
     ResponseEntity<?> responseEntity = temperatureController.postData(requestPayload);
 
     assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-    assertEquals(false, ((TemperatureResponse) responseEntity.getBody()).isOvertemp());
+    assertEquals("{overtemp=false}",
+      (responseEntity.getBody().toString()));
   }
 
   @Test
