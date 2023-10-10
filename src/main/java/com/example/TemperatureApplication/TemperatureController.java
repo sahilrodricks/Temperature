@@ -11,6 +11,7 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 /*
     This is the main REST controller for the temperature api as defined by the instructions.
@@ -21,10 +22,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TemperatureController {
   private List<String> errorList = new ArrayList<>();
   private static final String BAD_REQUEST_ERROR = "{\"error\": \"bad request\"}";
+  private Logger logger = Logger.getLogger(TemperatureController.class.getName());
 
   @PostMapping(value = "/temp", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> postData(@RequestBody JsonNode requestPayload) throws JsonProcessingException {
-
+    logger.info("API Request" + requestPayload);
     try {
       TemperatureRequest request = new TemperatureRequest(requestPayload);
 
