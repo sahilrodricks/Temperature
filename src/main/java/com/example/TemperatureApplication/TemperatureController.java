@@ -57,6 +57,9 @@ public class TemperatureController {
     } catch (IllegalArgumentException ie) {
       errorList.add(requestPayload.get("data").asText());
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST_ERROR);
+    } catch (NullPointerException npe) {
+      errorList.add("");
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST_ERROR);
     }
   }
 

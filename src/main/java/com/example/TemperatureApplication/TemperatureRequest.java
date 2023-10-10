@@ -41,7 +41,10 @@ public class TemperatureRequest {
       this.epochMs = Long.parseLong(parts[1]);
       this.temperature = Double.parseDouble(parts[3]);
     } catch (Exception e) {
-      throw new IllegalArgumentException("invalid input" + e);
+      if(e instanceof NullPointerException) {
+        throw e;
+      }
+      throw new IllegalArgumentException("Invalid Input" + e);
     }
   }
 
